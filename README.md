@@ -1,4 +1,4 @@
-TemplateMethodExamplesC-_PHP_Pyrhon
+TemplateMethodExamplesC-_PHP_Python
 ===================================
 
 Template Method Pattern Examples
