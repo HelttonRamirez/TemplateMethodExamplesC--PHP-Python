@@ -1,0 +1,187 @@
+//<?php
+///**
+// * The AbstractClass.
+// */
+//abstract class BinaryOperation
+//{
+//    /**
+//     * These are three hooks defined, which should
+//     * provide the two numbers which the operation is
+//     * applied to and its business logic.
+//     */
+//    protected abstract function _getFirstNumber();
+//    protected abstract function _getSecondNumber();
+//    protected abstract function _operator($a, $b);
+//
+//    /**
+//     * This is the Template Method.
+//     * It uses all the three hooks, but a typical
+//     * Template Method can coexist with other ones, and
+//     * share hooks with them.
+//     * @return numeric
+//     */
+//    public function getOperationResult()
+//    {
+//        $a = $this->_getFirstNumber();
+//        $b = $this->_getSecondNumber();
+//        return $this->_operator($a, $b);
+//    }
+//}
+//
+///**
+// * A ConcreteClass.
+// */
+//class Sum extends BinaryOperation
+//{
+//    private $_a;
+//    private $_b;
+//
+//    public function __construct($a = 0, $b = 0)
+//    {
+//        $this->_a = $a;
+//        $this->_b = $b;
+//    }
+//
+//    protected function _getFirstNumber()
+//    {
+//        return $this->_a;
+//    }
+//
+//    protected function _getSecondNumber()
+//    {
+//        return $this->_b;
+//    }
+//
+//    protected function _operator($a, $b)
+//    {
+//        return $a + $b;
+//    }
+//}
+//
+///**
+// * A ConcreteClass.
+// */
+//class NonNegativeSubtraction extends BinaryOperation
+//{
+//    private $_a;
+//    private $_b;
+//
+//    public function __construct($a = 0, $b = 0)
+//    {
+//        $this->_a = $a;
+//        $this->_b = $b;
+//    }
+//
+//    protected function _getFirstNumber()
+//    {
+//        return $this->_a;
+//    }
+//
+//    protected function _getSecondNumber()
+//    {
+//        return min($this->_a, $this->_b);
+//    }
+//
+//    protected function _operator($a, $b)
+//    {
+//        return $a - $b;
+//    }
+//
+//}
+//
+//// Client code
+//$sum = new Sum(84, 56);
+//echo $sum->getOperationResult(), "\n";
+//$nonNegativeSubtraction = new NonNegativeSubtraction(9, //14);
+//echo $nonNegativeSubtraction->getOperationResult(), "\n"//;
+
+
+
+
+
+
+
+
+
+<?php
+
+abstract class General
+{
+
+    protected abstract function _sort();
+    protected abstract function _view();
+   
+
+    
+     // This is the Template Method.
+
+    public function getOperationResult()
+    {
+        $a = $this->_sort();
+        $this->_view();
+        
+    }
+}
+
+
+class SortUp extends General
+{
+    private $_a;
+    
+
+    public function __construct($a)
+    {
+        $this->_a = $a;
+        
+    }
+
+    protected function _sort()
+    {
+        sort($this->_a);
+    }
+
+    protected function _view()
+    {
+      echo "\n","El ordenamiento Ascendente es: ";
+         foreach($this->_a as $i)
+        {
+            echo $i,", ";
+        }
+        
+    }
+}
+
+class SortDown extends General
+{
+    private $_a;
+    
+
+    public function __construct($a)
+    {
+        $this->_a = $a;
+        
+    }
+
+    protected function _sort()
+    {
+        arsort($this->_a);
+    }
+
+    protected function _view()
+    {
+      echo "\n";
+      echo "\n","El ordenamiento Descendente es: ";
+        foreach($this->_a as $i)
+        {
+            echo $i,", ";
+        }
+        
+    }
+}
+// Client code
+$arr=array(-2,2,1,44,2,1,0,0,-4,6,-7,9,33,1,-89);
+$sortUp = new SortUp($arr);
+$sortUp->getOperationResult();
+
+$sortDown=new SortDown($arr);
+$sortDown->getOperationResult();
